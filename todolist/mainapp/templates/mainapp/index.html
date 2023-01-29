@@ -1,0 +1,28 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}
+ToDoList
+{% endblock %}
+
+{% block maininfo %}
+<p class="text-center fs-1">Список задач</p>
+{% endblock %}
+
+{% block content %}
+{% if tasks %}
+{% for task in tasks %}
+  <div class="alert alert-primary mt-2">
+    <h3>{{task.title}}</h3>
+    <p>{{task.text}}</p>
+  </div>
+{% endfor %}
+<div class="d-grid gap-2 col-2 mx-auto">
+  <a href="{% url 'create' %}" role="button" class="btn btn-primary" data-bs-toggle="button">Добавить задачу</a>
+</div>
+{% else %}
+<p class="text-center fs-4">У вас нет ни одной задачи :(</p>
+<div class="d-grid gap-2 col-2 mx-auto">
+  <a href="{% url 'create' %}" class="btn btn-primary" role="button" data-bs-toggle="button">Создать первую задачу!</a>
+</div>
+{% endif %}
+{% endblock %}
